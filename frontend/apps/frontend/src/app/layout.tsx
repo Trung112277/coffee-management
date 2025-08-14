@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@/components/feature/theme-provider/theme-provider';
 import './global.css';
 import { Nunito } from 'next/font/google';
+import { I18nProvider } from '@/components/providers/i18n-provider';
 
 const nunito = Nunito({
   subsets: ['latin', 'vietnamese'],
@@ -23,14 +24,16 @@ export default function RootLayout({
   return (
     <html lang="vi" className={nunito.className} suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <I18nProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );
